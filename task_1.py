@@ -1,3 +1,4 @@
+from math import isqrt
 numbers = list(range(1,101))
 simple = []
 
@@ -10,7 +11,7 @@ for num in numbers:
     elif num % 2 == 0:
         is_simple = False
     else:
-        for i in range(3, int(num ** 0.5) + 1, 2):
+        for i in range(3, isqrt(num) + 1, 2):
             if num % i == 0:
                 is_simple = False
                 break
