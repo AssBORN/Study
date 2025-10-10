@@ -1,21 +1,25 @@
-from math import isqrt
-numbers = list(range(1,101))
-simple = []
+def is_simple(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
 
-for num in numbers:
-    if num == 1:
-        continue
-    is_simple = True
-    if num == 2:
-        is_simple = True
-    elif num % 2 == 0:
-        is_simple = False
-    else:
-        for i in range(3, isqrt(num) + 1, 2):
-            if num % i == 0:
-                is_simple = False
-                break
-    if is_simple:
-        simple.append(num)
-print("Исходный массив:", numbers)
-print("Простые числа:",simple)
+    for i in range(3, int(n ** 0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+def filter_simples(numbers):
+    simples = []
+    for num in numbers:
+        if is_simple(num):
+            simples.append(num)
+    return simples
+
+if __name__ == "__main__":
+    numbers = list(range(1,101))
+    simple_numbers = filter_simples(numbers)
+    print("Исходный массив:", numbers)
+    print("Простые числа:", simple_numbers)
